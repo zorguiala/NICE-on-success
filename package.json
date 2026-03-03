@@ -26,6 +26,18 @@
       {
         "command": "niceOnSuccess.playFailure",
         "title": "NICE: Play Failure Sound"
+      },
+      {
+        "command": "niceOnSuccess.addCommand",
+        "title": "NICE: Add Command to Filter"
+      },
+      {
+        "command": "niceOnSuccess.removeCommand",
+        "title": "NICE: Remove Command from Filter"
+      },
+      {
+        "command": "niceOnSuccess.listCommands",
+        "title": "NICE: Show Enabled Commands"
       }
     ],
     "configuration": {
