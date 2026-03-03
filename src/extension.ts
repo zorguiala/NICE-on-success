@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as childProcess from "child_process";
 import * as path from "path";
+import * as fs from "fs";
 
 export function activate(context: vscode.ExtensionContext) {
   const outputChannel = vscode.window.createOutputChannel("NICE on Success");
@@ -118,12 +119,17 @@ export function activate(context: vscode.ExtensionContext) {
         });
 
         context.subscriptions.push(onDidEndTerminalShellExecution);
-      } else {
+      } else if (!hasTerminalAPI && enableTerminalListener) {
+        // Only warn if user explicitly enabled it but API not available
         outputChannel.appendLine(
           "❌ Terminal shell execution API NOT available (requires VS Code 1.89.0+)",
         );
         vscode.window.showWarningMessage(
           "NICE on Success: Terminal API not available. Update VS Code to 1.89.0+",
+        );
+      } else {
+        outputChannel.appendLine(
+          "ℹ️ Terminal listener disabled (enable with niceOnSuccess.enableTerminalListener setting)",
         );
       }
     } catch (error) {
@@ -170,12 +176,8 @@ function playSuccessSound(context: vscode.ExtensionContext) {
     return;
   }
 
-  const defaultSoundPath = path.join(
-    context.extensionPath,
-    "sounds",
-    "CLICK_Nice.wav",
-  );
-  playSoundFile(defaultSoundPath);
+  const successFolder = path.join(context.extensionPath, "sounds", "success");
+  playRandomSoundFromFolder(successFolder);
 }
 
 function playFailureSound(context: vscode.ExtensionContext) {
@@ -187,12 +189,33 @@ function playFailureSound(context: vscode.ExtensionContext) {
     return;
   }
 
-  const defaultFailureSound = path.join(
-    context.extensionPath,
-    "sounds",
-    "FAIL.wav",
-  );
-  playSoundFile(defaultFailureSound);
+  const failsFolder = path.join(context.extensionPath, "sounds", "fails");
+  playRandomSoundFromFolder(failsFolder);
+}
+
+function playRandomSoundFromFolder(folderPath: string) {
+  try {
+    const files = fs.readdirSync(folderPath);
+    const audioFiles = files.filter(
+      (file) =>
+        file.endsWith(".wav") ||
+        file.endsWith(".mp3") ||
+        file.endsWith(".flac") ||
+        file.endsWith(".aac"),
+    );
+
+    if (audioFiles.length === 0) {
+      vscode.window.showErrorMessage(`No audio files found in ${folderPath}`);
+      return;
+    }
+
+    const randomFile =
+      audioFiles[Math.floor(Math.random() * audioFiles.length)];
+    const fullPath = path.join(folderPath, randomFile);
+    playSoundFile(fullPath);
+  } catch (error) {
+    vscode.window.showErrorMessage(`Error reading sounds folder: ${error}`);
+  }
 }
 
 function playSoundFile(absoluteFilePath: string) {
