@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Jest Tests",
+      "type": "shell",
+      "command": "npx jest",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run Tests (watch mode)",
+      "type": "shell",
+      "command": "npx jest --watch",
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Run Tests (specific file)",
+      "type": "shell",
+      "command": "npx jest ${file}",
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": "$tsc-watch",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

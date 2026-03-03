@@ -1,0 +1,76 @@
+{
+  "name": "nice-on-success",
+  "displayName": "NICE on Success",
+  "description": "Plays a nice sound when tests or builds succeed.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "niceOnSuccess.playSuccess",
+        "title": "NICE: Play Success Sound"
+      },
+      {
+        "command": "niceOnSuccess.playFailure",
+        "title": "NICE: Play Failure Sound"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "NICE on Success",
+      "properties": {
+        "niceOnSuccess.successSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the custom .wav file to play on success."
+        },
+        "niceOnSuccess.failureSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the custom .wav file to play on failure."
+        },
+        "niceOnSuccess.enabledTasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Array of task names to play sounds for. Leave empty to play sounds for all tasks. Example: [\"npm: test\", \"npm: build\"]"
+        },
+        "niceOnSuccess.enableTerminalListener": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable sounds for terminal commands (requires VS Code 1.89.0+). Disable to only play sounds for tasks."
+        },
+        "niceOnSuccess.enabledTerminalCommands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Array of terminal commands to play sounds for (e.g. [\"npm\", \"build\"]). Only used when enableTerminalListener is true. Leave empty to play sounds for all commands."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.0.0"
+  }
+}

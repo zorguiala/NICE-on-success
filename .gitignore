@@ -1,0 +1,22 @@
+# Node dependencies
+node_modules/
+
+# Compilation output
+out/
+*.map
+
+# VS Code extension packaging
+*.vsix
+.vscode-test/
+.agents/
+
+# Temporary / testing files
+test-sound.js
+test-terminal.ts
+example.test.ts
+jest.config.js
+coverage/
+
+# OS generated files
+.DS_Store
+Thumbs.db
