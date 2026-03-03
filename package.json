@@ -3,18 +3,45 @@
   "id": "nice-on-success",
   "name": "nice-on-success",
   "displayName": "NICE on Success",
-  "description": "Plays a nice sound when tests or builds succeed.",
-  "version": "1.0.0",
+  "description": "Plays random celebratory sounds on task/command success and failure. Customize sounds and filter triggers.",
+  "version": "1.0.1",
   "icon": "logo/logo.png",
+  "keywords": [
+    "sound",
+    "notification",
+    "task",
+    "test",
+    "fun",
+    "meme",
+    "audio",
+    "feedback"
+  ],
+  "categories": [
+    "Other",
+    "Testing"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/zorguiala/NICE-on-success"
   },
+  "homepage": "https://github.com/zorguiala/NICE-on-success",
+  "bugs": {
+    "url": "https://github.com/zorguiala/NICE-on-success/issues"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
   "activationEvents": [
-    "*"
+    "onTaskRunRequest",
+    "onCommand:niceOnSuccess.playSuccess",
+    "onCommand:niceOnSuccess.playFailure",
+    "onCommand:niceOnSuccess.addCommand",
+    "onCommand:niceOnSuccess.removeCommand",
+    "onCommand:niceOnSuccess.listCommands"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -84,6 +111,7 @@
     "watch": "tsc -watch -p ./",
     "package": "vsce package --out zorguiala.nice-on-success.vsix"
   },
+  "sponsorLink": "https://github.com/sponsors/zorguiala",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^18.0.0",
@@ -91,5 +119,9 @@
     "jest": "^30.2.0",
     "ts-jest": "^29.4.6",
     "typescript": "^5.0.0"
-  }
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ]
 }
