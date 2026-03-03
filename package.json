@@ -1,13 +1,22 @@
 {
+  "publisher": "zorguiala",
+  "id": "nice-on-success",
   "name": "nice-on-success",
   "displayName": "NICE on Success",
   "description": "Plays a nice sound when tests or builds succeed.",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zorguiala/NICE-on-success"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
   "activationEvents": [
-    "*"
+    "onCommand:niceOnSuccess.playSuccess",
+    "onCommand:niceOnSuccess.playFailure",
+    "onTaskProcessExecution"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -63,7 +72,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package"
+    "package": "vsce package --out zorguiala.nice-on-success.vsix"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
