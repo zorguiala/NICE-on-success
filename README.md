@@ -8,6 +8,7 @@
 - 🔊 **Random Sound Selection** - Multiple sounds in success and failure folders, randomly selected each time
 - 🎯 **Command Filtering** - Add or remove specific tasks/commands to control which ones trigger sounds
 - 🎨 **Custom Sounds** - Replace default sounds with your own `.wav` files
+- ⏱️ **Smart Duration Filter** - Ignores instantaneous commands (like `clear` or `cd`) so you aren't bombarded by noise
 - 🖥️ **Terminal Support** - Optional terminal command detection (requires VS Code 1.89.0+)
 
 ## Usage
@@ -44,6 +45,16 @@ To enable sounds for typed terminal commands:
 1. Open VS Code Settings
 2. Search for `niceOnSuccess.enableTerminalListener`
 3. Enable it (requires VS Code 1.89.0+)
+
+### Minimum Duration Threshold
+
+To prevent you from being bombarded with sounds when running simple, instantaneous commands (like `clear`, `cd`, or looking at a file), the extension requires a task/command to run for at least **100 milliseconds** before playing a sound.
+
+You can customize this threshold:
+
+1. Open VS Code Settings
+2. Search for `niceOnSuccess.minDurationMs`
+3. Change it to any millisecond value (e.g., `500` for half a second, `0` to always play sounds)
 
 ---
 

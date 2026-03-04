@@ -91,7 +91,7 @@
         },
         "niceOnSuccess.minDurationMs": {
           "type": "number",
-          "default": 500,
+          "default": 100,
           "description": "Minimum execution time (in milliseconds) a task or command must run before a sound is triggered. Keeps the extension quiet for practically instantaneous commands like 'clear'."
         },
         "niceOnSuccess.enabledTerminalCommands": {
