@@ -7,3 +7,8 @@ src/**
 **/.eslintrc.json
 **/*.map
 **/*.ts
+.agents/**
+test-*.ts
+test-*.js
+*.test.js
+jest.config.js

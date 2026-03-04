@@ -4,7 +4,7 @@
   "name": "nice-on-success",
   "displayName": "NICE on Success",
   "description": "Plays random celebratory sounds on task/command success and failure. Customize sounds and filter triggers.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icon": "logo/logo.png",
   "keywords": [
     "sound",
@@ -36,12 +36,7 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "onTaskRunRequest",
-    "onCommand:niceOnSuccess.playSuccess",
-    "onCommand:niceOnSuccess.playFailure",
-    "onCommand:niceOnSuccess.addCommand",
-    "onCommand:niceOnSuccess.removeCommand",
-    "onCommand:niceOnSuccess.listCommands"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -93,6 +88,11 @@
           "type": "boolean",
           "default": false,
           "description": "Enable sounds for terminal commands (requires VS Code 1.89.0+). Disable to only play sounds for tasks."
+        },
+        "niceOnSuccess.minDurationMs": {
+          "type": "number",
+          "default": 500,
+          "description": "Minimum execution time (in milliseconds) a task or command must run before a sound is triggered. Keeps the extension quiet for practically instantaneous commands like 'clear'."
         },
         "niceOnSuccess.enabledTerminalCommands": {
           "type": "array",
